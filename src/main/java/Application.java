@@ -18,7 +18,7 @@ import java.util.Arrays;
 public class Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(AccessingDataMysqlApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
     @Bean

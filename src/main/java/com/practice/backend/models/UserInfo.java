@@ -3,24 +3,34 @@ package com.practice.backend.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users_info")
+@Table(name = "users")
 public class UserInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id")
+    private Long user_id;
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Column(name = "password_hash", nullable = false)
+    private String password;
+    @Column(name = "username", unique = true, nullable = false)
     private String username;
+    @Column(name = "email", nullable = false)
     private String email;
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "secondName")
+    @Column(name = "second_name")
     private String secondName;
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    public Long getId() {
-        return id;
+
+    public Long getUser_id() {
+        return user_id;
     }
 
     public String getUsername() {

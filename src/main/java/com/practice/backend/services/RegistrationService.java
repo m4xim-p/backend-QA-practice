@@ -1,11 +1,10 @@
 package com.practice.backend.services;
 
-import com.practice.backend.models.User;
 import com.practice.backend.models.UserInfo;
 import com.practice.backend.models.requestEntities.RegistrationRequest;
 import com.practice.backend.models.responseEntities.RegistrationResponse;
 import com.practice.backend.repositories.UserInfoRepository;
-import com.practice.backend.repositories.UserRepository;
+import com.practice.backend.repositories.TokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,39 +13,37 @@ import java.util.regex.Pattern;
 @Service
 public class RegistrationService {
 
-    private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
     private final UserInfoRepository userInfoRepository;
+
+    private final JwtTokenProviderService jwtTokenProviderService;
 
     private final String EMAIL_PATTERN = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$";
     private final String PHONE_NUMBER_PATTERN = "^\\+\\d{11}$";
 
     @Autowired
-    public RegistrationService(UserRepository userRepository, UserInfoRepository userInfoRepository) {
-        this.userRepository = userRepository;
+    public RegistrationService(TokenRepository tokenRepository, UserInfoRepository userInfoRepository, JwtTokenProviderService jwtTokenProviderService) {
+        this.tokenRepository = tokenRepository;
         this.userInfoRepository = userInfoRepository;
+        this.jwtTokenProviderService = jwtTokenProviderService;
     }
 
     public RegistrationResponse userRegistration(RegistrationRequest request) {
-        boolean userExist = userRepository.findByUsername(request.getUsername()) == 0 && userInfoRepository.findByUsername(request.getUsername()) == 0;
 
-        if (userExist) {
+        if (userInfoRepository.existsByUsername(request.getUsername())) {
             if (emailValidation(request.getEmail())) {
                 if (phoneNumberValidator(request.getPhoneNumber())) {
-                    User user = new User();
-                    user.setUsername(request.getUsername());
-                    user.setPassword(request.getPassword());
-
-                    userRepository.save(user);
-
                     UserInfo userInfo = new UserInfo();
                     userInfo.setUsername(request.getUsername());
+                    userInfo.setPassword(request.getPassword());
                     userInfo.setEmail(request.getEmail());
                     userInfo.setFirstName(request.getFirstName());
                     userInfo.setSecondName(request.getSecondName());
                     userInfo.setPhoneNumber(request.getPhoneNumber());
 
                     userInfoRepository.save(userInfo);
-                    return new RegistrationResponse(true, "It was perfect");
+
+                    return new RegistrationResponse(true, "It was perfect", jwtTokenProviderService.generateToken(userInfo.getUsername()));
                 } else {
                     return new RegistrationResponse(false, "The phone number is incorrect.");
                 }
