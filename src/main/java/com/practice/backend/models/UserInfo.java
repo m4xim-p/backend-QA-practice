@@ -1,5 +1,7 @@
 package com.practice.backend.models;
 
+import com.practice.backend.models.requestEntities.RegistrationRequest;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,11 +12,6 @@ public class UserInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long user_id;
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Column(name = "password_hash", nullable = false)
     private String password;
     @Column(name = "username", unique = true, nullable = false)
@@ -28,6 +25,18 @@ public class UserInfo {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+
+    public UserInfo() {
+    }
+
+    public UserInfo(RegistrationRequest request) {
+        this.username = request.getUsername();
+        this.password = request.getPassword();
+        this.email = request.getEmail();
+        this.firstName = request.getFirstName();
+        this.secondName = request.getSecondName();
+        this.phoneNumber = request.getPhoneNumber();
+    }
 
     public Long getUser_id() {
         return user_id;
@@ -71,5 +80,9 @@ public class UserInfo {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

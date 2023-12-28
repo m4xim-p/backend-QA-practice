@@ -1,5 +1,6 @@
 package com.practice.backend.services;
 
+import com.practice.backend.models.Token;
 import com.practice.backend.models.UserInfo;
 import com.practice.backend.models.requestEntities.RegistrationRequest;
 import com.practice.backend.models.responseEntities.RegistrationResponse;
@@ -33,17 +34,13 @@ public class RegistrationService {
         if (userInfoRepository.existsByUsername(request.getUsername())) {
             if (emailValidation(request.getEmail())) {
                 if (phoneNumberValidator(request.getPhoneNumber())) {
-                    UserInfo userInfo = new UserInfo();
-                    userInfo.setUsername(request.getUsername());
-                    userInfo.setPassword(request.getPassword());
-                    userInfo.setEmail(request.getEmail());
-                    userInfo.setFirstName(request.getFirstName());
-                    userInfo.setSecondName(request.getSecondName());
-                    userInfo.setPhoneNumber(request.getPhoneNumber());
+                    Token userToken = new Token();
 
-                    userInfoRepository.save(userInfo);
+                    userToken.setUserId(userInfoRepository.save(new UserInfo(request)).getUser_id());
+                    userToken.setValue(jwtTokenProviderService.generateToken(request.getUsername()));
 
-                    return new RegistrationResponse(true, "It was perfect", jwtTokenProviderService.generateToken(userInfo.getUsername()));
+                    tokenRepository.save(userToken);
+                    return new RegistrationResponse(true, "It was perfect", userToken.getValue());
                 } else {
                     return new RegistrationResponse(false, "The phone number is incorrect.");
                 }

@@ -30,4 +30,7 @@ public class Token {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
 }

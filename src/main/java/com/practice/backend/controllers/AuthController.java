@@ -25,9 +25,6 @@ public class AuthController {
         // Проверка пользователя в базе данных с помощью сервиса AuthService
         boolean isAuthenticated = authService.authenticate(request.getUsername(), request.getPassword());
 
-
-
-
         if (isAuthenticated) {
             AuthResponse response = new AuthResponse(true, "Авторизация успешна!");
             return ResponseEntity.ok(response);
