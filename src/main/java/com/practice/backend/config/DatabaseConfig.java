@@ -19,9 +19,9 @@ public class DatabaseConfig {
     public DataSource dataSource() {
         return DataSourceBuilder
                 .create()
-                .url("jdbc:mysql://localhost:3306/qa_users?useSSL=false")
-                .username("root")
-                .password("")
+                .url("jdbc:mysql://127.0.0.1:3306/pet_nursery?useSSL=false&allowPublicKeyRetrieval=true")
+                .username("pet_nursery")
+                .password("kPy7JkkzlRBldBv5x3dvlEH9YqMSEIfvvSc1oOnS")
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .build();
     }

@@ -11,4 +11,9 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
 
     @Query("SELECT COUNT(ui) FROM UserInfo ui WHERE ui.username = :username")
     Long findByUsername(@Param("username") String username);
+
+    boolean existsByUsername(@Param("username") String username);
+
+    @Query("SELECT u FROM UserInfo u WHERE u.username = :username AND u.password = :password")
+    UserInfo findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 }

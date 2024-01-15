@@ -1,22 +1,21 @@
 package com.practice.backend.services;
 
-import com.practice.backend.models.User;
-import com.practice.backend.repositories.UserRepository;
+import com.practice.backend.models.UserInfo;
+import com.practice.backend.repositories.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
 
-    private final UserRepository userRepository;
-
+    private final UserInfoRepository userInfoRepository;
     @Autowired
-    public AuthService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AuthService(UserInfoRepository userInfoRepository) {
+        this.userInfoRepository = userInfoRepository;
     }
 
     public boolean authenticate(String username, String password) {
-        User user = userRepository.findByUsernameAndPassword(username, password);
-        return user != null;
+        UserInfo userInfo = userInfoRepository.findByUsernameAndPassword(username, password);
+        return userInfo != null;
     }
 }
