@@ -22,7 +22,6 @@ public class AuthController {
 
     @PostMapping("/auth")
     public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthRequest request) {
-        // Проверка пользователя в базе данных с помощью сервиса AuthService
         boolean isAuthenticated = authService.authenticate(request.getUsername(), request.getPassword());
 
         if (isAuthenticated) {
