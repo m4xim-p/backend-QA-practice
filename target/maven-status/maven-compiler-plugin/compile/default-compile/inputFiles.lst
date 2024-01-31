@@ -1,0 +1,15 @@
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/controllers/RegistrationController.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/models/requestEntities/AuthRequest.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/models/Token.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/Application.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/controllers/AuthController.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/models/requestEntities/RegistrationRequest.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/models/UserInfo.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/services/AuthService.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/models/responseEntities/AuthResponse.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/config/SecurityConfig.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/repositories/UserInfoRepository.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/repositories/TokenRepository.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/models/responseEntities/RegistrationResponse.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/services/JwtTokenProviderService.java
+/Users/maximp/Documents/Work/QA_platform/backend-QA-practice/src/main/java/com/practice/backend/services/RegistrationService.java

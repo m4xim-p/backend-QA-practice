@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<backend-QA-practice>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "Application",
+            "projectName": "backend-QA-practice",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

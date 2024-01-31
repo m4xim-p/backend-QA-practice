@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -18,7 +18,31 @@
         <thymeleaf.version>3.0.9</thymeleaf.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>db-cloud</id>
+            <properties>
+                <activatedProperties>db-cloud</activatedProperties>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>db-local</id>
+            <properties>
+                <activatedProperties>db-local</activatedProperties>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <!-- Spring Boot Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -131,18 +155,24 @@
             </plugin>
 
             <plugin>
-                     <groupId>org.springframework.boot</groupId>
-                     <artifactId>spring-boot-maven-plugin</artifactId>
-                     <version>1.1.12.RELEASE</version>
-                     <executions>
-                         <execution>
-                             <goals>
-                                 <goal>repackage</goal>
-                             </goals>
-                         </execution>
-                     </executions>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.1.12.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 
 </project>
