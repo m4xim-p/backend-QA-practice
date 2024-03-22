@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "debug",
+			"type": "shell",
+			"command": "mvn spring-boot:run -Drun.jvmArguments=\"--spring.profiles.active=db-cloud\"",
+			"group": "build"
+		}
+	]
+}
